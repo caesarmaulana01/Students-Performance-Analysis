@@ -51,7 +51,8 @@ Proyek ini mencakup beberapa langkah utama untuk menyelesaikan permasalahan yang
     - Memberikan rekomendasi berbasis data untuk intervensi yang efektif.  
     
 ### Persiapan
-**Sumber Data**  
+
+#### Sumber Data
 Dataset yang digunakan dalam proyek ini berasal dari [Dicoding Dataset](https://github.com/dicodingacademy/dicoding_dataset/blob/main/students_performance/README.md), yang mencakup informasi akademik mahasiswa seperti nilai, kehadiran, aktivitas ekstrakurikuler, dan data demografis. Dataset ini telah dianonimkan untuk menjaga kerahasiaan data pribadi mahasiswa.
 
 **Penjelasan Fitur Dataset**  
@@ -87,20 +88,163 @@ Dataset ini terdiri dari beberapa kolom dengan deskripsi sebagai berikut:
 
 Dengan tabel di atas, setiap fitur dataset dijelaskan secara rinci, termasuk keterangan nilai kategorikal untuk mempermudah pemahaman.
 
+#### Setup Environment
+
+Untuk menjalankan proyek ini, Anda perlu menyiapkan lingkungan pengembangan dengan langkah-langkah berikut:
+
+1. **Persyaratan Sistem**  
+    Pastikan Anda memiliki sistem operasi yang mendukung Python 3.8 atau versi lebih baru.
+
+2. **Instalasi Python**  
+    Unduh dan instal Python dari [python.org](https://www.python.org/). Pastikan untuk menambahkan Python ke PATH selama instalasi.
+
+3. **Membuat Virtual Environment**  
+    Buat lingkungan virtual untuk mengisolasi dependensi proyek:
+    ```bash
+    python -m venv env
+    source env/bin/activate  # Untuk Linux/MacOS
+    env\Scripts\activate     # Untuk Windows
+    ```
+
+4. **Menginstal Dependensi**  
+    Instal semua dependensi yang diperlukan menggunakan file `requirements.txt`:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+5 **Menjalankan Notebook Jupyter**  
+    Jika proyek menggunakan Jupyter Notebook, instal Jupyter dan jalankan:
+    ```bash
+    pip install jupyter
+    jupyter notebook
+    ```
+
+Dengan langkah-langkah di atas, Anda siap untuk memulai proyek ini.
+
+---
+
 ## Business Dashboard
-Jelaskan tentang business dashboard yang telah dibuat. Jika ada, sertakan juga link untuk mengakses dashboard tersebut.
+
+Dashboard ini dibuat untuk memantau **Performa Mahasiswa** di Universitas Jaya Jaya berdasarkan berbagai indikator penting, khususnya dalam upaya mengurangi tingkat dropout dan meningkatkan kualitas pendidikan.
+
+### Penjelasan Data dan Pentingnya Fitur
+
+Semua metrik yang divisualisasikan pada dashboard telah melalui tahapan **Exploratory Data Analysis (EDA)** untuk memastikan relevansi dan kualitas data. Berikut adalah beberapa fitur penting yang digunakan dan alasan mengapa fitur tersebut signifikan:
+
+- **Interaction_CU_1st_2nd_Grade** memiliki korelasi tertinggi terhadap status mahasiswa (0.5908). Fitur ini menunjukkan hubungan antara nilai interaksi kurikuler dengan kemungkinan mahasiswa untuk lulus atau dropout.
+- **Total_CU_Approved** dan **Total_CU_Grade** juga memiliki korelasi tinggi, yang menunjukkan bahwa performa akademik secara keseluruhan sangat memengaruhi status mahasiswa.
+- **Tuition_fees_up_to_date** (0.4098) menunjukkan bahwa mahasiswa yang membayar biaya kuliah tepat waktu cenderung memiliki peluang lebih besar untuk lulus.
+- **Scholarship_holder** (0.2976) memberikan insight bahwa penerima beasiswa memiliki tingkat kelulusan yang lebih tinggi dibandingkan mahasiswa tanpa beasiswa.
+- **Age_at_enrollment** (-0.2434) menunjukkan bahwa usia saat pendaftaran dapat memengaruhi status mahasiswa, di mana mahasiswa yang lebih tua cenderung memiliki risiko dropout lebih tinggi.
+
+### Insight 
+
+Dari hasil EDA, beberapa fitur penting yang diperlukan untuk memantau performa mahasiswa adalah:
+- **Dropout Rate**: Sebanyak 32.12% mahasiswa mengalami dropout, yang menjadi fokus utama untuk ditangani.
+- **Dampak Beasiswa**: Mahasiswa penerima beasiswa memiliki tingkat kelulusan yang lebih tinggi (835 lulusan) dibandingkan mahasiswa tanpa beasiswa.
+- **Kewajiban Keuangan**: Mahasiswa tanpa tunggakan memiliki tingkat kelulusan yang jauh lebih tinggi (2108 lulusan) dibandingkan yang memiliki tunggakan.
+- **Usia Saat Pendaftaran**: Mahasiswa yang lebih muda (usia rata-rata 21.78 tahun) memiliki peluang lebih besar untuk lulus dibandingkan mahasiswa yang lebih tua.
+
+### Komponen Dashboard
+
+Dashboard terdiri dari beberapa komponen utama:
+
+- **Jumlah Mahasiswa Total**  
+    Menampilkan total mahasiswa aktif dalam dataset.
+
+- **Jumlah Mahasiswa Dropout**  
+    Menunjukkan berapa banyak mahasiswa yang tidak menyelesaikan kuliah mereka.
+
+- **Persentase Dropout**  
+    Menghitung persentase mahasiswa yang dropout dibandingkan dengan total mahasiswa.
+
+- **Jumlah Mahasiswa Penerima Beasiswa**  
+    Memberikan informasi jumlah mahasiswa yang mendapatkan beasiswa.
+
+- **Jumlah Mahasiswa dengan Tunggakan**  
+    Menampilkan jumlah mahasiswa yang memiliki pinjaman atau tunggakan pembayaran.
+
+- **Rata-rata Usia Saat Pendaftaran**  
+    Memberikan gambaran rata-rata usia mahasiswa saat pertama kali mendaftar.
+
+### Visualisasi yang Ditampilkan:
+
+- **Donut Chart Mahasiswa Menunggak Biaya Kuliah**  
+    Memberikan distribusi persentase mahasiswa yang menunggak berdasarkan status akademik (Dropout, Enrolled, Graduate).
+
+- **Bar Chart Rata-rata Unit Kurikuler Disetujui per Status**  
+    Menunjukkan rata-rata jumlah unit kurikuler yang disetujui untuk tiap status mahasiswa.
+
+- **Bar Chart Interaksi Nilai terhadap Status**  
+    Memvisualisasikan hubungan antara jumlah nilai (grade) dan status mahasiswa.
+
+- **Line Chart Kelompok Usia Saat Mendaftar terhadap Status**  
+    Menampilkan hubungan kelompok umur dengan status mahasiswa (banyaknya dropout pada usia tertentu).
+
+- **Bar Chart Pengaruh Ketepatan Pembayaran terhadap Status**  
+    Membandingkan mahasiswa yang membayar tepat waktu dengan yang tidak, dikategorikan berdasarkan status mereka.
+
+- **Bar Chart Dampak Penerimaan Beasiswa terhadap Status**  
+    Menunjukkan seberapa besar pengaruh beasiswa terhadap kemungkinan mahasiswa untuk terus berkuliah atau dropout.
+
+Pada dashboard saya juga menerapkan filter data berdasarkan gender mahasiswa dengan pilihan All, male dan female. Hal ini dilakukan untuk melihat perbandingan kelulusan dan dropout pada gender tersebut.
+
+---
 
 ## Menjalankan Sistem Machine Learning
-Jelaskan cara menjalankan protoype sistem machine learning yang telah dibuat. Selain itu, sertakan juga link untuk mengakses prototype tersebut.
+Untuk menjalankan prototipe sistem machine learning yang telah dikembangkan, berikut adalah langkah-langkahnya:
 
-```
+### Model yang Digunakan
+Data yang digunakan pada aplikasi ini telah melalui evaluasi terhadap lima model machine learning berikut:
 
-```
+| Model                | Accuracy | Precision | Recall | F1 Score |
+|----------------------|----------|-----------|--------|----------|
+| GaussianNB           | 0.85     | 0.85      | 0.85   | 0.85     |
+| Logistic Regression  | 0.91     | 0.91      | 0.91   | 0.91     |
+| Random Forest        | 0.90     | 0.90      | 0.90   | 0.90     |
+| XGBoost              | 0.90     | 0.90      | 0.90   | 0.90     |
+| SVC                  | 0.90     | 0.90      | 0.90   | 0.90     |
+
+**Kesimpulan:**  
+Model Logistic Regression memberikan performa terbaik secara keseluruhan pada data uji, diikuti oleh Random Forest, XGBoost, dan SVC. GaussianNB memiliki performa yang sedikit lebih rendah. Oleh karena itu, Logistic Regression dipilih sebagai model akhir karena keseimbangan antara akurasi, precision, recall, dan f1-score.
+
+### Menjalankan Aplikasi Streamlit
+Aplikasi yang dikembangkan menggunakan Streamlit untuk memvisualisasikan hasil prediksi. Ikuti langkah-langkah berikut untuk menjalankan aplikasi:
+
+1. **Menjalankan Aplikasi Streamlit**  
+    Jalankan perintah berikut di terminal untuk memulai aplikasi Streamlit:
+    ```bash
+    streamlit run app.py
+    ```
+
+2. **Mengakses Aplikasi**  
+    Setelah aplikasi berjalan, Anda dapat mengaksesnya melalui browser pada URL berikut:
+    ```
+    http://localhost:8501
+    ```
+
+3. **Mengisi Data Mahasiswa**  
+    Pada halaman aplikasi, terdapat form yang memungkinkan pengguna untuk mengisi data mahasiswa berdasarkan metrik yang diperlukan. Setelah semua data diisi, tekan tombol **Prediksi Output**.
+
+4. **Melihat Hasil Prediksi**  
+    Setelah tombol ditekan, hasil prediksi akan ditampilkan, menunjukkan apakah mahasiswa tersebut berisiko mengalami dropout atau tidak.
+
+5. **Melihat Data yang Telah Diinput**  
+    Aplikasi juga menyediakan tabel atau dataframe yang menampilkan data yang telah diinput oleh pengguna, termasuk hasil scaling yang diterapkan pada data tersebut.
+
+Dengan langkah-langkah di atas, Anda dapat menjalankan aplikasi Streamlit dan memanfaatkan sistem machine learning yang telah dikembangkan.
+
 
 ## Conclusion
-Jelaskan konklusi dari proyek yang dikerjakan.
+Proyek ini berhasil memberikan solusi berbasis data untuk mengatasi permasalahan dropout di Universitas Jaya Jaya. Dengan menggunakan analisis data, pengembangan model prediktif, dan pembuatan dashboard interaktif, universitas kini memiliki alat yang lebih baik untuk memahami pola performa mahasiswa, mendeteksi risiko dropout, dan mengambil langkah intervensi yang tepat. Model Logistic Regression yang digunakan menunjukkan performa terbaik dengan akurasi tinggi, sehingga dapat diandalkan untuk prediksi risiko dropout.
 
 ### Rekomendasi Action Items
-Berikan beberapa rekomendasi action items yang harus dilakukan perusahaan guna menyelesaikan permasalahan atau mencapai target mereka.
-- action item 1
-- action item 2
+Berikut adalah beberapa rekomendasi yang dapat dilakukan oleh Universitas Jaya Jaya untuk menyelesaikan permasalahan dan mencapai target mereka:
+- **Implementasi Sistem Prediksi**: Terapkan model prediktif secara langsung dalam sistem universitas untuk mendeteksi mahasiswa berisiko tinggi secara real-time.
+- **Pengembangan Program Intervensi**: Buat program bimbingan akademik dan konseling khusus untuk mahasiswa yang teridentifikasi berisiko tinggi mengalami dropout.
+- **Peningkatan Beasiswa**: Tingkatkan jumlah penerima beasiswa untuk mendukung mahasiswa yang membutuhkan bantuan finansial, karena terbukti dapat meningkatkan tingkat kelulusan.
+- **Monitoring Berbasis Dashboard**: Gunakan dashboard interaktif secara rutin untuk memantau performa mahasiswa dan mengambil keputusan berbasis data.
+- **Peningkatan Kesadaran Keuangan**: Edukasi mahasiswa tentang pentingnya pembayaran tepat waktu untuk mengurangi risiko dropout terkait masalah keuangan.
+- **Evaluasi Berkala**: Lakukan evaluasi berkala terhadap model prediktif dan dashboard untuk memastikan relevansi dan akurasi sistem seiring waktu.
+
+Dengan langkah-langkah ini, Universitas Jaya Jaya dapat meningkatkan angka retensi dan kelulusan mahasiswa secara signifikan.
