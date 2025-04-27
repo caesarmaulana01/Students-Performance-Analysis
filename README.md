@@ -125,6 +125,8 @@ Dengan langkah-langkah di atas, Anda siap untuk memulai proyek ini.
 
 ## Business Dashboard
 
+![Dashboard Visualisasi](dashboard-caesarmaulana.png)
+
 Dashboard ini dibuat untuk memantau **Performa Mahasiswa** di Universitas Jaya Jaya berdasarkan berbagai indikator penting, khususnya dalam upaya mengurangi tingkat dropout dan meningkatkan kualitas pendidikan.
 
 ### Penjelasan Data dan Pentingnya Fitur
